@@ -1,0 +1,55 @@
+﻿<Window x:Class="ZakazniciMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZakazniciMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding CustomersCollection}" Grid.ColumnSpan="3" Grid.RowSpan="6" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding FirstName, StringFormat='First: {0}'}"></TextBlock>
+                        <TextBlock Text="{Binding LastName, StringFormat='Last: {0}'}"></TextBlock>
+                        <TextBlock Text="{Binding Contact.Mail, StringFormat='Mail: {0}'}"></TextBlock>
+                    </StackPanel>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Content="{Binding FirstNameHelper}" Grid.Row="0" Grid.Column="3"></Label>
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        
+        <Label Content="{Binding LastNameHelper}" Grid.Row="0" Grid.Column="4"></Label>
+        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+        <Label Content="{Binding MailHelper}" Grid.Row="2" Grid.Column="3"></Label>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Mail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+        <Label Content="{Binding AdressHelper}" Grid.Row="2" Grid.Column="4"></Label>
+        <TextBox Grid.Row="3" Grid.Column="4" Text="{Binding Adress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+
+        <Button Grid.Row="0" Grid.Column="6" Content="Save" Command="{Binding SaveCustomerCommand}"></Button>
+        <Button Grid.Row="1" Grid.Column="6" Content="Delete" Command="{Binding DeleteCustomerCommand}"></Button>
+        <Button Grid.Row="2" Grid.Column="6" Content="Edit" Command="{Binding EditCustomerCommand}"></Button>
+    </Grid>
+</Window>
